@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import 'bulma/css/bulma.css';
 import './styles.scss';
@@ -14,4 +15,4 @@ const store=createStore(RootReducer)
 
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<Provider store={store}><App /></Provider>, rootElement);
+ReactDOM.render(<Router><Provider store={store}><App /></Provider></Router>, rootElement);
