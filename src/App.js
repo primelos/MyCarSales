@@ -10,15 +10,17 @@ import { buyItem, removeFeature} from './actions'
 import { Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import CarHome from './components/CarHome'
 
 const App = (props) => {
 
   
   return (
-    <div className='main-page'>
-      <Route exact path='/' component={Login} />
-      <PrivateRoute path='/protected' component={CarHome} />
+    <div className="main-page">
+      <Route exact path="/" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
+      <PrivateRoute path="/protected" component={CarHome} />
     </div>
   );
 };

@@ -1,52 +1,65 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "./utils/axiosWithAuth";
-
+import { auth } from '../firebase'
+import { useHistory, Link } from 'react-router-dom'
 
 const Login = props => {
-  const [enter, setEnter] = useState({
-    username: "",
-    password: ""
-  });
-  const log = e => {
+  const [enter, setEnter] = useState({email: '', password: ''});
+
+  const history = useHistory()
+  const { email, password } = enter
+
+ async function loginApp(e) {
     e.preventDefault();
-    setEnter({
-      ...enter,
-      [e.target.name]: e.target.value
-    });
+    // setEnter({
+    //   ...enter,
+    //   [e.target.name]: e.target.value
+    // });
+   
+    await auth.signInWithEmailAndPassword(email, password)
+    history.push('/protected')
   };
-  const login = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/login", enter)
-      .then(sentMe => {
-        localStorage.setItem("token", sentMe.data.payload);
-        props.history.push("/protected");
-      })
-      .catch(err => console.log(err));
-  };
+
+  const handleChange = (e) => {
+    const { value, name } = e.target
+    setEnter({ ...enter, [name]: value})
+  }
+
+  // const login = e => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post("/login", enter)
+  //     .then(sentMe => {
+  //       localStorage.setItem("token", sentMe.data.payload);
+  //       props.history.push("/protected");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
   return (
-    <div className='login-page'>
-      
+    <div className="login-page">
       <header> Welcome To CarBuyer.com</header>
-      <div className='form-enter'>
-        <form onSubmit={login}>
+      <div className="form-enter">
+        <form onSubmit={loginApp}>
           <input
-            type="text"
-            name="username"
-            placeholder="enter username"
-            onChange={log}
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            onChange={handleChange}
+            value={email}
+            required
           />
           <input
             type="password"
             name="password"
-            placeholder="enter password"
-            value={enter.password}
-            onChange={log}
+            placeholder="Enter password"
+            value={password}
+            onChange={handleChange}
+            required
           />
-          <button>Login In</button>
+          <button type="submit">Login In</button>
         </form>
       </div>
-      <p>Testing Only login: user passwprd: asdf</p>
+      <p>New User -{'>'} <Link to='signup'>Sign Up</Link></p>
     </div>
   );
 };
