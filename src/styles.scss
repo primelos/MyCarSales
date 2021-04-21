@@ -2,11 +2,16 @@ html, body, #root {
   height: 100%;
 }
 body {
+  margin: 0;
+  
+}
+.home-body {
   background: #333;
   margin: 0;
   display: grid;
   padding: 3em;
   place-items: center;
+  height: 100vh;
 }
 .boxes {
   display: grid;
@@ -17,7 +22,7 @@ body {
 .box {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  margin-bottom: 0 !important;
   h1 {
     font-size: 20px;
     margin: 0 0 1rem 0;
@@ -45,5 +50,73 @@ body {
     background: white;
     border: 1px solid hotpink;
     color: #333;
+  }
+}
+
+
+#sold{
+  color: red;
+  font-weight: bold;
+}
+.login-page {
+  background-color: #c5c5c5;
+  width: 100%;
+  
+  min-height: 400px;
+  text-align: center;
+  background-image: url('./img/FORD-Mustang.jpeg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  p {
+    font-weight: 700;
+    width: 16%;
+    margin: auto;
+    background-color: #f0f8ff54;
+    opacity: .9;
+    border-radius: 4px;
+    margin-top: 19px;
+
+  }
+}
+header {
+  padding-top: 40px;
+  font-size: 5.5rem;
+  font-weight: bold;
+}
+input {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  border-radius: 20px;
+  outline: none;
+  padding: 9px 0 9px 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  margin: auto;
+  padding-top: 60px;
+}
+.log-out {
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 6%;
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+}
+button {
+  padding: 9px 13px;
+  border-radius: 20px;
+  outline: none;
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+  &:hover {
+   transform: scale(1.1);
   }
 }
